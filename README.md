@@ -1,4 +1,5 @@
 ![example of coloured TADs](http://i.cubeupload.com/LAXSWV.jpg)
+![another example of coloured TADs](http://i.cubeupload.com/LyryNB.jpg)
 # genome-blender
 Scripts to create cartoons of 3D genomes on blender.
 
@@ -16,7 +17,10 @@ Based on the concepts developed on ["Capturing pairwise and multi-way chromosoma
 # How to use
 In general one has to create the semi-random walk that will determine the "chromatin". This is done on R given my lack of experience on python. After saving the chromatin path in R onw should import it using the python script within blender. A handful of blender files are provided and links to the corresponding videos too.
 
-Please feel free to take over the project or contribute. Just drop a line.
 
 # Notes
+The current scripts by no means represent real information. They are just a cartoon if how I imagine things to work. This of course could be fed with real data (not sure yet what type) and draw something more "real".
+
 Due to attention to other projects this libraries are considered unfinished work.
+
+Please feel free to take over the project or contribute. Just drop a line.
