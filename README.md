@@ -11,5 +11,12 @@ https://vimeo.com/genome3d
 
 Based on the concepts developed on ["Capturing pairwise and multi-way chromosomal conformations using chromosomal walks"][cwalks].
 
-
 [cwalks]: http://www.nature.com/nature/journal/v540/n7632/full/nature20158.html
+
+# How to use
+In general one has to create the semi-random walk that will determine the "chromatin". This is done on R given my lack of experience on python. After saving the chromatin path in R onw should import it using the python script within blender. A handful of blender files are provided and links to the corresponding videos too.
+
+Please feel free to take over the project or contribute. Just drop a line.
+
+# Notes
+Due to attentio to other projects this libraries are considered unfinished work.
