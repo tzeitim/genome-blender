@@ -1,3 +1,4 @@
+![example of coloured TADs](http://i.cubeupload.com/LAXSWV.jpg)
 # genome-blender
 Scripts to create cartoons of 3D genomes
 
