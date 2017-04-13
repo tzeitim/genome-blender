@@ -19,4 +19,4 @@ In general one has to create the semi-random walk that will determine the "chrom
 Please feel free to take over the project or contribute. Just drop a line.
 
 # Notes
-Due to attentio to other projects this libraries are considered unfinished work.
+Due to attention to other projects this libraries are considered unfinished work.
