@@ -1,7 +1,9 @@
+# 3d Genome blender
+
+Scripts to create cartoons of 3D genomes on blender.
 ![example of coloured TADs](http://i.cubeupload.com/LAXSWV.jpg)
 ![another example of coloured TADs](http://i.cubeupload.com/LyryNB.jpg)
-# genome-blender
-Scripts to create cartoons of 3D genomes on blender.
+
 
 # requires
 - R-base
@@ -24,3 +26,6 @@ The current scripts by no means represent real information. They are just a cart
 Due to attention to other projects this libraries are considered unfinished work.
 
 Please feel free to take over the project or contribute. Just drop a line.
+
+
+keywords: 3d genome, hic, chromatin, chromosome conformation capture, 3C, chromosomal walks, C-walks.
