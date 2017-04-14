@@ -361,15 +361,10 @@ cis = 10
 #tad_path+=to_origin
 #knn =getNeighbors_radius(tad_path, tad_path, k=10, cis=5)
 #for i in knn: print("%s\n"%i)
-#tad_path = importWalk("C:/Users/pedro/Dropbox/blender/path_test.txt")
-#tad_path = importWalk("/home/pedro/Dropbox/blender/path_test.txt")
-#tad_path1 = importWalk("C:/Users/pedro/Dropbox/blender/path_10k_dense_warp_300.txt")
-#tad_path2 = importWalk("C:/Users/pedro/Dropbox/blender/path_2k_dense_w_200.txt")
-tad_path6 = importWalk("C:/Users/pedro/Dropbox/blender/path_6k_dense_w_200_l_0.5_al_2.4.txt")
-#tad_path3= importWalk("C:/Users/pedro/Dropbox/blender/path_test3.txt")
-#tad_path = importWalk("C:/Users/pedro/Dropbox/blender/path_test4.txt")
 
-#mem_path = importWalk("C:/Users/pedro/Dropbox/blender/mem_test.txt")
+tad_path6 = importWalk("path_6k_dense_w_200_l_0.5_al_2.4.txt")
+
+
 #mem_path = importWalk("/home/pedro/Dropbox/blender/mem_test.txt")
 #knn_path = importWalk("C:/Users/pedro/Dropbox/blender/knn_test.txt")
 #for i in tad_path: print("%s\n"%i)
