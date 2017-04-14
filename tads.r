@@ -1,12 +1,20 @@
 library('RANN')
-# main function that generates the paths
-generate_tad_random = function(hops = 1000, origin = rep(0,3), limit =1, abs_limit = limit * 4 ,scale = 0.1, min_delta=scale, cis=50, warp = NULL){
+# main function that generates the paths. A path is a list of connected x,y,x coords and it's length is set by _hops_.
+# origin = the triplet coordinate where a path begins
+# limit = linear distance away from the origin after the path will be penalized and forced to return towards the origin 
+#          it determines the extent of a domain. 
+# abs_limit = as the path grows (see warp) one might one to bound the scope of the full path. This determines the global limits of the path
+# scale = scaling factor
+# min_delta = minimim step required by the walker to call a hop valid
+# cis = 
+# warp = a path can suddenly do an abrupt, long-range hop in order to start populating a different volume. This setting determines how ofter an warp will happen. Once the path warps, the origin is reset.
+generate_tad_random = function(hops = 1000, origin = rep(0,3), limit =1, abs_limit = limit * 4 ,scale = 0.1, min_delta = scale, cis = 50, warp = NULL){
 
 	central_origin = origin
 	tad_loc = data.frame(x = origin[1], y = origin[2], z = origin[3])
 	#tad_loc = origin
 	current = origin
-	pos = data.frame(x=current[1], y=current[2], z=current[3])
+	pos = data.frame(x = current[1], y = current[2], z = current[3])
 
 	delta = c(0,0,0)
 	mem_trail = delta
@@ -49,8 +57,8 @@ generate_tad_random = function(hops = 1000, origin = rep(0,3), limit =1, abs_lim
 			}
 		}
 		iter = iter +1
-		fhop = tensor(origin, current, limit= limit, scale = scale)
-		if(hop >=cis){
+		fhop = tensor(origin, current, limit = limit, scale = scale)
+		if(hop >= cis){
 			memory = memory_centroid(pos[(nrow(pos)-cis):nrow(pos), ])
 		} else {
 			memory = colMeans(pos) #current + rnorm(3, 0, min_delta)
@@ -58,8 +66,8 @@ generate_tad_random = function(hops = 1000, origin = rep(0,3), limit =1, abs_lim
 
 		#cat(sprintf("last jump was of %.2f", euclidean_distance(fhop$pos, current)))
 		#message(sprintf("from the origin %.2f", euclidean_distance(fhop$pos, origin)))
-		if(nrow(pos)>0){
-			knn = nn2(as.matrix(pos), matrix(fhop$pos, ncol=3, nrow=1), k = nrow(pos))
+		if(nrow(pos) > 0){
+			knn = nn2(as.matrix(pos), matrix(fhop$pos, ncol = 3, nrow = 1), k = nrow(pos))
 			knn = knn$nn.dist[1,1] > min_delta *1.52
 		}else{
 			knn = TRUE
@@ -75,7 +83,7 @@ generate_tad_random = function(hops = 1000, origin = rep(0,3), limit =1, abs_lim
 			delta = c(delta, fhop$delta)
 			current = fhop$pos
 			hop = hop + 1
-			cat(sprintf("\r%.2f%%\t%s", 100*hop/hops, iter))
+			cat(sprintf("\r%.2f%%\t%s", 100 * hop/hops, iter))
 		}
 
 
@@ -85,16 +93,16 @@ generate_tad_random = function(hops = 1000, origin = rep(0,3), limit =1, abs_lim
 	#path = matrix(pos, ncol=3, byrow=T)
 	path = pos 
 	colnames(path) = c("x","y","z")
-	deltas = matrix(delta, ncol=3, byrow=T)
+	deltas = matrix(delta, ncol = 3, byrow = T)
 	colnames(deltas) = c("dx","dy","dz")
 
 	#as.data.frame(cbind(path, deltas))
 	#as.data.frame(path)
-	list(path=as.data.frame(path), deltas=deltas, mem_trail=mem_trail, cis=cis)
+	list(path = as.data.frame(path), deltas = deltas, mem_trail = mem_trail, cis = cis)
 }
 
 # main engine that suggests the next step on a path 
-tensor= function(origin=c(0,0,0), current=c(0,0,0), limit = 1, penalty_factor = 0.25, scale = 0.1){
+tensor= function(origin = c(0,0,0), current = c(0,0,0), limit = 1, penalty_factor = 0.25, scale = 0.1){
 	pf = penalty_factor
 	x = current[1]
 	y = current[2]
@@ -106,7 +114,7 @@ tensor= function(origin=c(0,0,0), current=c(0,0,0), limit = 1, penalty_factor = 
 		nx = rnorm(1, 0, scale)
 		ny = rnorm(1, 0, scale)
 		nz = rnorm(1, 0, scale)
-		delta = c(nx, ny, nz) + (c(dx,dy,dz) * sapply(c(0,0,0), function(x){ifelse(sign(x)==0, 1, sign(x))}))
+		delta = c(nx, ny, nz) + (c(dx,dy,dz) * sapply(c(0,0,0), function(x){ifelse(sign(x) == 0, 1, sign(x))}))
 	
 	} else {
 		nx = rnorm(1, 0, scale)
@@ -114,7 +122,7 @@ tensor= function(origin=c(0,0,0), current=c(0,0,0), limit = 1, penalty_factor = 
 		nz = rnorm(1, 0, scale)
 		delta = -c(nx, ny, nz)
 	}
-	return(list(pos = current + delta, delta=delta))
+	return(list(pos = current + delta, delta = delta))
 }
 # basic functions
 euclidean_distance = function(a, b){
@@ -131,12 +139,12 @@ memory_centroid = function(a){
 	colMeans(a)
 }
 
-knn_path = function(tad_list, k=100, len=20, region=20:30){
+knn_path = function(tad_list, k = 100, len = 20, region = 20:30){
 
 	end = nrow(tad_list$path)
-	start = tad_list$cis + (end*0.1)
+	start = tad_list$cis + (end * 0.1)
 
-	knn = nn2(tad_list$path, tad_list$path, k=100)
+	knn = nn2(tad_list$path, tad_list$path, k = 100)
 	k = c()
 
 	x = sample(start:end, 1)
@@ -149,7 +157,7 @@ knn_path = function(tad_list, k=100, len=20, region=20:30){
 		}
 	}
 	dev.new()
-	plot(tad_list$path[k,], t='l')
+	plot(tad_list$path[k,], t = 'l')
 	return(tad_list$path[k,])
 }
 
@@ -167,19 +175,18 @@ plot_progress = function(pos, mem_trail, warp = NULL){
 	n_mem = nrow(mem_trail)
 	f_warp = 1:n_mem %% warp == 0
 
-	plot(pos[, 1], pos[, 2], t='l', xlab="X", ylab="Y")
-	points(mem_trail[f_warp, 1], mem_trail[f_warp, 2], pch=19, col='red')
-	abline(v=mem_trail[n_mem, 1], h=mem_trail[n_mem, 2], col='lightblue', lty=2, lwd=2)
+	plot(pos[, 1], pos[, 2], t = 'l', xlab = "X", ylab = "Y")
+	points(mem_trail[f_warp, 1], mem_trail[f_warp, 2], pch = 19, col = 'red')
+	abline(v = mem_trail[n_mem, 1], h = mem_trail[n_mem, 2], col = 'lightblue', lty = 2, lwd = 2)
 
-	plot(pos[, 1], pos[, 3], t='l', xlab="X", ylab="Z")
-	points(mem_trail[f_warp, 1], mem_trail[f_warp, 3],pch=19, col='red')
-	abline(v=mem_trail[n_mem, 1], h=mem_trail[n_mem, 3], col='lightblue', lty=2, lwd=2)
+	plot(pos[, 1], pos[, 3], t = 'l', xlab = "X", ylab = "Z")
+	points(mem_trail[f_warp, 1], mem_trail[f_warp, 3], pch = 19, col = 'red')
+	abline(v = mem_trail[n_mem, 1], h = mem_trail[n_mem, 3], col = 'lightblue', lty = 2, lwd = 2)
 
-	plot(pos[, 2], pos[, 3], t='l', xlab="Y", ylab="Z")
-	points(mem_trail[f_warp, 2], mem_trail[f_warp, 3],pch=19, col='red')
-	abline(v=mem_trail[n_mem, 2], h=mem_trail[n_mem, 3], col='lightblue', lty=2, lwd=2)
+	plot(pos[, 2], pos[, 3], t = 'l', xlab = "Y", ylab = "Z")
+	points(mem_trail[f_warp, 2], mem_trail[f_warp, 3], pch = 19, col = 'red')
+	abline(v = mem_trail[n_mem, 2], h = mem_trail[n_mem, 3], col = 'lightblue', lty = 2, lwd = 2)
 
-	
 #	plot(mem_trail[,1], mem_trail[,2], t='l', col='red')
 #	plot(mem_trail[,2], mem_trail[,3], t='l', col='red')
 #	plot(mem_trail[,1], mem_trail[,3], t='l', col='red')
