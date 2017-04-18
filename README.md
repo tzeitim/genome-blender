@@ -9,6 +9,7 @@ Scripts to create cartoons of 3D genomes on blender.
 - R-base
 - RANN R package
 - [blender v2.77](https://www.blender.org/features/past-releases/2-77/). Have not tested other versions but it might work unless something really basic had changed.
+- Does not require but makes use of the color palettes from [colorbrewer](https://github.com/axismaps/colorbrewer/).
 # examples of models generated with this code
 https://vimeo.com/genome3d
 
