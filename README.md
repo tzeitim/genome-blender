@@ -35,7 +35,7 @@ Once the path is computed it has to be imported into **blender**. The code at th
 # Notes
 The current scripts by no means represent real information. They are just a cartoon if how I imagine things to work. This of course could be fed with real data (not sure yet what type) and draw something more "real".
 
-Due to attention to other projects this libraries are considered unfinished work.
+Due to attention to other projects this libraries are considered as stand-by.
 
 Please feel free to take over the project or contribute. Just drop a line.
 
