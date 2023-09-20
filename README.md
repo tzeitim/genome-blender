@@ -33,11 +33,9 @@ Once the path is computed it has to be imported into **blender**. The code at th
     tad_path6 = importWalk("path_6k_dense_w_200_l_0.7.txt")
     
 # Notes
-The current scripts by no means represent real information. They are just a cartoon if how I imagine things to work. This of course could be fed with real data (not sure yet what type) and draw something more "real".
+The current scripts by no means represent real information. They are just a cartoon of how I imagine things to work. This of course could be fed with real data (not sure yet what type) and draw something more "real".
 
-Due to attention to other projects this libraries are considered as stand-by.
-
-Please feel free to take over the project or contribute. Just drop a line.
+Due to attention to other projects these libraries are considered as stand-by.
 
 
 keywords: 3d genome, hic, chromatin, chromosome conformation capture, 3C, chromosomal walks, C-walks.
