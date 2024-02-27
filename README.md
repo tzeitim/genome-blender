@@ -18,7 +18,7 @@ Based on the concepts developed on ["Capturing pairwise and multi-way chromosoma
 [cwalks]: http://www.nature.com/nature/journal/v540/n7632/full/nature20158.html
 
 # How to use
-In general one has to create the semi-random walk that will determine the "chromatin". This is done on R given my lack of experience on python. After saving the chromatin path in R one should import it using the python script within blender. A handful of blender files are provided and links to the corresponding videos too.
+In general one has to create the semi-random walk that will determine the "chromatin". This is done on R. After saving the chromatin path in R one should import it using the python script within blender. A handful of blender files are provided and links to the corresponding videos too.
 
 ## Simple example
 
@@ -34,8 +34,6 @@ Once the path is computed it has to be imported into **blender**. The code at th
     
 # Notes
 The current scripts by no means represent real information. They are just a cartoon of how I imagine things to work. This of course could be fed with real data (not sure yet what type) and draw something more "real".
-
-Due to attention to other projects these libraries are considered as stand-by.
 
 
 keywords: 3d genome, hic, chromatin, chromosome conformation capture, 3C, chromosomal walks, C-walks.
